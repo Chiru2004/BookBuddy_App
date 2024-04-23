@@ -3,5 +3,5 @@ import 'package:flutter/material.dart';
 
 void main() {
 
-  runApp(BookBuddyApp());
+  runApp(const BookBuddyApp());
 }
