@@ -12,7 +12,9 @@ class CategoryButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: ElevatedButton(
+
         style: const ButtonStyle(
+          shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(9)))),
           backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 81, 81, 81))),
         onPressed: () {
           final exploreBloc = BlocProvider.of<ExploreBloc>(context);

@@ -1,3 +1,4 @@
+import 'package:bookbuddyapp/Presentation/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bookbuddyapp/Blocs/explore_bloc.dart';
 import 'package:flutter/widgets.dart';
@@ -32,26 +33,40 @@ class _ExploreScreen extends State<ExploreScreen>{
     return BlocProvider(create: (context) => exploreCategories,
     child:  Column(
       children: [
-        const SizedBox(height: 7,),
+        Padding(
+          padding: const EdgeInsets.all(11.0),
+          child: Row(
+            children: [
+              const Text("Categories",style: TextStyle(color: Colors.white,fontSize: 21),),
+              Spacer(),
+              IconButton(onPressed: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchScreen(),));
+              },
+               icon: const Icon(Icons.search,color: Colors.white,))
+            ],
+          ),
+        ),
+        const SizedBox(height: 4,),
         Container(
-              height: 60,
+              height: 40,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: const [
-                  CategoryButton(category: 'Thriller',icon: Icons.dangerous,),
+                  CategoryButton(category: 'Thriller'),
                   CategoryButton(category: 'Romance'),
                   CategoryButton(category: 'Biography'),
                   CategoryButton(category: 'History'),
                   CategoryButton(category: 'Horror'),
                   CategoryButton(category: 'Self-help'),
                   CategoryButton(category: 'Fantasy'),
+                 //  CategoryButton(category: 'Children'),
                   // Add more category buttons as needed
                 ],
               ),
             ),
+            const SizedBox(height: 7,),
         Expanded(
           child: Scaffold(
-          
             body: BlocBuilder<ExploreBloc,ExploreState>(
             
             //here builder is a pure function that we will use to fetch the data
@@ -74,24 +89,11 @@ class _ExploreScreen extends State<ExploreScreen>{
                       ),
                       itemCount: state.books.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return BookTile(book: state.books[index]);
+                        
+                         return BookTile(book: state.books[index]);
                       },
                     );
 
-
-
-
-          // print(state.books.length);
-          // return Center(
-          //   child: 
-          //   ListView.builder(itemBuilder:(context, index) {
-          //     return ListTile(
-          //                   title: Text(state.books[index].volumeInfo!.title.toString(),style:const  TextStyle(color: Colors.white),),
-          //                 );
-          //   },
-          //   itemCount: state.books.length,
-          //   ),
-          // );
              }
              else
              if( state is ExploreError)

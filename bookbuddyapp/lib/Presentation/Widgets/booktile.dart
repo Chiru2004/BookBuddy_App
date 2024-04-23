@@ -38,7 +38,7 @@ class BookTile extends StatelessWidget {
           ),
         ),
        // const SizedBox(height: 20),
-       Spacer(),
+       //const Spacer(),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(

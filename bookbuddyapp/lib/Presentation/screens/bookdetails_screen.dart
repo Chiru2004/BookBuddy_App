@@ -1,5 +1,7 @@
+import 'package:bookbuddyapp/Presentation/Widgets/imageview.dart';
 import 'package:bookbuddyapp/data/models/category.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class BookDetailsPage extends StatelessWidget {
  
@@ -11,11 +13,11 @@ class BookDetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black, // Dark background color
       appBar: AppBar(
-        title: Text("Details"),
+        title: const Text("Details",style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.black, // Match the background color
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding:const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,17 +26,22 @@ class BookDetailsPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Image of the book
-                Container(
-                  width: 100,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(book.volumeInfo!.imageLinks!.thumbnail!),
-                      fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ImageView(image: book.volumeInfo!.imageLinks!.thumbnail!),));
+                  },
+                  child: Container(
+                    width: 100,
+                    height: 150,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(book.volumeInfo!.imageLinks!.thumbnail!),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
-                SizedBox(width: 16.0),
+                const SizedBox(width: 16.0),
                 // Title and Author
                 Expanded(
                   child: Column(
@@ -44,11 +51,11 @@ class BookDetailsPage extends StatelessWidget {
                      const  SizedBox(height: 20,),
                       Text(
                         book.volumeInfo!.title!,
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                        style:const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                      const  SizedBox(height: 8.0),
                       Text(
-                        'Author: \n'+book.volumeInfo!.authors!.first,
+                        'By \n'+book.volumeInfo!.authors!.first,
                         style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ],
@@ -84,11 +91,26 @@ class BookDetailsPage extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(), // Disable scrolling
                   children: [
                     ListTile(
-                      title: Text('Detail 1', style: TextStyle(color: Colors.white)),
+                      title: Text(book.volumeInfo!.language!, style: TextStyle(color: Colors.white,fontSize:21 )),
+                      subtitle: const Text('Language',style: TextStyle(color: Colors.white,fontSize: 14),),
+                    ),
+                   ListTile(
+                      title: Text(book.volumeInfo!.pageCount.toString(), style: TextStyle(color: Colors.white,fontSize:21 )),
+                      subtitle: const Text('Page Count',style: TextStyle(color: Colors.white,fontSize: 14),),
                     ),
                     ListTile(
-                      title: Text('Detail 2', style: TextStyle(color: Colors.white)),
+                      title: Text(book.volumeInfo!.publishedDate!, style: TextStyle(color: Colors.white,fontSize:21 )),
+                      subtitle: const Text('Published Date',style: TextStyle(color: Colors.white,fontSize: 14),),
                     ),
+                    ListTile(
+                      title: Text(book.volumeInfo!.categories!.first, style: TextStyle(color: Colors.white,fontSize:21 )),
+                      subtitle: const Text('Genre',style: TextStyle(color: Colors.white,fontSize: 14),),
+                    ),
+                    ListTile(
+                      title: Text(book.volumeInfo!.printType!, style: TextStyle(color: Colors.white,fontSize:21 )),
+                      subtitle: const Text('Print Type',style: TextStyle(color: Colors.white,fontSize: 14),),
+                    ),
+                    
                     // Add more details as needed
                   ],
                 ),
@@ -96,7 +118,16 @@ class BookDetailsPage extends StatelessWidget {
             ),
             SizedBox(height: 24.0),
             // Section 3: Buttons
-            Row(
+           
+            
+          ],
+        ),
+      ),
+      bottomNavigationBar:  
+            BottomAppBar(
+            //  clipBehavior: Clip.,
+              color: Colors.black,
+              child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
@@ -113,9 +144,7 @@ class BookDetailsPage extends StatelessWidget {
                 ),
               ],
             ),
-          ],
-        ),
-      ),
+            ),
     );
   }
 }
