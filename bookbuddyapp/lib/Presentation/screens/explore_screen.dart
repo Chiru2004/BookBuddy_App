@@ -59,6 +59,7 @@ class _ExploreScreen extends State<ExploreScreen>{
                   CategoryButton(category: 'Horror'),
                   CategoryButton(category: 'Self-help'),
                   CategoryButton(category: 'Fantasy'),
+                   CategoryButton(category: 'Code'),
                  //  CategoryButton(category: 'Children'),
                   // Add more category buttons as needed
                 ],
@@ -83,10 +84,12 @@ class _ExploreScreen extends State<ExploreScreen>{
              {
              return GridView.builder(
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, // Number of books in a row
-                        crossAxisSpacing: 10.0,
-                        mainAxisSpacing: 10.0,
+                        crossAxisCount: 3, // Number of books in a row
+                        crossAxisSpacing: 3.0,
+                        mainAxisSpacing: 7.0,
+                        
                       ),
+                      
                       itemCount: state.books.length,
                       itemBuilder: (BuildContext context, int index) {
                         

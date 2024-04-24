@@ -11,51 +11,49 @@ class BookTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => BookDetailsPage(book: book) ,));
-        // Handle book tap
-      },
-      child:  Container(
-  width: 150, // Adjust the width as needed
-  child: Card(
-    color: Colors.black,
-    child: Column(
-      
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(
-          width: 100,
-          height: 150, // Fixed height for the image container
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.network(
-              book.volumeInfo!.imageLinks!.thumbnail!,
-              fit: BoxFit.cover,
-              height: double.infinity,
-               // Adjust the fit as per your requirement
-            ),
+    return Container(
+      height: 100,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => BookDetailsPage(book: book) ,));
+                // Handle book tap
+              },
+              child:  Column(
+                children: [
+                  Container(
+                    height: 76,
+                  width: 55, // Adjust the width as needed
+                  decoration: BoxDecoration(
+                   borderRadius: BorderRadius.circular(7),
+                   image: DecorationImage(image: NetworkImage(
+                    book.volumeInfo!.imageLinks!.thumbnail!,
+                    
+                   ),
+                   fit: BoxFit.cover
+                   )
+                  )
+                              ),
+                             const  SizedBox(height: 3.5,),
+                              Text(
+                          book.volumeInfo!.title!,
+                          style: const TextStyle(fontSize: 9, color: Colors.white),
+                          maxLines: 2
+                          ,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                ],
+              ),
+            
+            
+              ),
           ),
-        ),
-       // const SizedBox(height: 20),
-       //const Spacer(),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            book.volumeInfo!.title!,
-            style: const TextStyle(fontSize: 11, color: Colors.white),
-            maxLines: 1
-            ,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-      ],
-    ),
-  ),
-),
-
-
-      );
+        ],
+      ),
+    );
     
   }
 }

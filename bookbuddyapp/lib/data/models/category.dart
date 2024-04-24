@@ -31,24 +31,7 @@ class category_data {
         ? new AccessInfo.fromJson(json['accessInfo'])
         : null;
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['kind'] = kind;
-    data['id'] = id;
-    data['etag'] = this.etag;
-    data['selfLink'] = this.selfLink;
-    if (this.volumeInfo != null) {
-      data['volumeInfo'] = this.volumeInfo!.toJson();
-    }
-    if (this.saleInfo != null) {
-      data['saleInfo'] = this.saleInfo!.toJson();
-    }
-    if (this.accessInfo != null) {
-      data['accessInfo'] = this.accessInfo!.toJson();
-    }
-    return data;
-  }
+// small modifications
 }
 
 class VolumeInfo {
@@ -117,35 +100,7 @@ class VolumeInfo {
     infoLink = json['infoLink'];
     canonicalVolumeLink = json['canonicalVolumeLink'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['title'] = this.title;
-    data['authors'] = this.authors;
-    data['publishedDate'] = this.publishedDate;
-    data['description'] = this.description;
-    if (this.industryIdentifiers != null) {
-      data['industryIdentifiers'] =
-          this.industryIdentifiers!.map((v) => v.toJson()).toList();
-    }
-    if (this.readingModes != null) {
-      data['readingModes'] = this.readingModes!.toJson();
-    }
-    data['pageCount'] = this.pageCount;
-    data['printType'] = this.printType;
-    data['categories'] = this.categories;
-    data['maturityRating'] = this.maturityRating;
-    data['allowAnonLogging'] = this.allowAnonLogging;
-    data['contentVersion'] = this.contentVersion;
-    if (this.imageLinks != null) {
-      data['imageLinks'] = this.imageLinks!.toJson();
-    }
-    data['language'] = this.language;
-    data['previewLink'] = this.previewLink;
-    data['infoLink'] = this.infoLink;
-    data['canonicalVolumeLink'] = this.canonicalVolumeLink;
-    return data;
-  }
+//small modifications
 }
 
 class IndustryIdentifiers {
@@ -178,12 +133,7 @@ class ReadingModes {
     image = json['image'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['text'] = this.text;
-    data['image'] = this.image;
-    return data;
-  }
+
 }
 
 class ImageLinks {
@@ -196,13 +146,7 @@ class ImageLinks {
     smallThumbnail = json['smallThumbnail'];
     thumbnail = json['thumbnail'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['smallThumbnail'] = this.smallThumbnail;
-    data['thumbnail'] = this.thumbnail;
-    return data;
-  }
+//small modifications
 }
 
 class SaleInfo {
@@ -218,13 +162,7 @@ class SaleInfo {
     isEbook = json['isEbook'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['country'] = this.country;
-    data['saleability'] = this.saleability;
-    data['isEbook'] = this.isEbook;
-    return data;
-  }
+
 }
 
 class AccessInfo {
@@ -264,24 +202,7 @@ class AccessInfo {
     quoteSharingAllowed = json['quoteSharingAllowed'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['country'] = this.country;
-    data['viewability'] = this.viewability;
-    data['embeddable'] = this.embeddable;
-    data['publicDomain'] = this.publicDomain;
-    data['textToSpeechPermission'] = this.textToSpeechPermission;
-    if (this.epub != null) {
-      data['epub'] = this.epub!.toJson();
-    }
-    if (this.pdf != null) {
-      data['pdf'] = this.pdf!.toJson();
-    }
-    data['webReaderLink'] = this.webReaderLink;
-    data['accessViewStatus'] = this.accessViewStatus;
-    data['quoteSharingAllowed'] = this.quoteSharingAllowed;
-    return data;
-  }
+
 }
 
 class Epub {
@@ -292,10 +213,5 @@ class Epub {
   Epub.fromJson(Map<String, dynamic> json) {
     isAvailable = json['isAvailable'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['isAvailable'] = this.isAvailable;
-    return data;
-  }
+//small modifications
 }

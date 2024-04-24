@@ -42,6 +42,12 @@ on<ExploreEvent>((ExploreEvent event,Emitter<ExploreState> emit) async{
 );
   }
   }
+
+
+
+
+
+  
   
 //  @override
 //   Stream<ExploreState> mapEventToState(ExploreEvent event) async* {
