@@ -134,18 +134,20 @@ class BookDetailsPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
+                  style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(const Color.fromARGB(255, 59, 59, 59))),
                   onPressed: () {
                   // we add the code to send the initial values
-                  BlocProvider.of<BooksaveBloc>(context).add(AddBookEvent(BookShelfBook(book.volumeInfo!.title!,book.volumeInfo!.authors!.first, "My fav book")));
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Book added to shelf.")));
+                  BlocProvider.of<BooksaveBloc>(context).add(AddBookEvent(BookShelfBook(book.volumeInfo!.title!,book.volumeInfo!.authors!.first, book.volumeInfo!.description!)));
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Book added to shelf."),duration: Duration(seconds: 1),));
                   },
-                  child: Text('Save to Shelf'),
+                  child:const Text('Save to Shelf'),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     // Handle search online
                   },
-                  child: Text('Search Online'),
+                  child:const Text('Search Online'),
                 ),
               ],
             ),

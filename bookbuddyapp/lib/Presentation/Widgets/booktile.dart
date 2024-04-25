@@ -25,8 +25,8 @@ class BookTile extends StatelessWidget {
               child:  Column(
                 children: [
                   Container(
-                    height: 76,
-                  width: 55, // Adjust the width as needed
+                    height: 140,
+                  width: 100, // Adjust the width as needed
                   decoration: BoxDecoration(
                    borderRadius: BorderRadius.circular(7),
                    image: DecorationImage(image: NetworkImage(

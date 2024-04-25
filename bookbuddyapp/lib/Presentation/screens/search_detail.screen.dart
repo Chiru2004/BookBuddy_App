@@ -2,9 +2,12 @@ import 'package:bookbuddyapp/Blocs/booksave/booksave_bloc.dart';
 import 'package:bookbuddyapp/Presentation/Widgets/imageview.dart';
 import 'package:bookbuddyapp/data/models/book.dart';
 import 'package:bookbuddyapp/data/models/category.dart';
+import 'package:bookbuddyapp/services/launchurl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class SearchDetailsPage extends StatelessWidget {
  
@@ -13,6 +16,7 @@ class SearchDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.black, // Dark background color
       appBar: AppBar(
@@ -89,39 +93,43 @@ class SearchDetailsPage extends StatelessWidget {
             ), 
                 SizedBox(height: 8.0),
                 // ListView for details
-              /*  ListView(
+               ListView(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(), // Disable scrolling
                   children: [
+                    if(book['volumeInfo']['language']!=null)
                     ListTile(
-                      title: Text(book.volumeInfo!.language!, style: TextStyle(color: Colors.white,fontSize:21 )),
-                      subtitle: const Text('Language',style: TextStyle(color: Colors.white,fontSize: 14),),
+                      title: Text(book['volumeInfo']['language'], style: TextStyle(color: Colors.white,fontSize:18 )),
+                      subtitle: const Text('Language',style: TextStyle(color: Colors.white,fontSize: 12),),
                     ),
+
+                     if(book['volumeInfo']['pageCount']!=null)
                    ListTile(
-                      title: Text(book.volumeInfo!.pageCount.toString(), style: TextStyle(color: Colors.white,fontSize:21 )),
-                      subtitle: const Text('Page Count',style: TextStyle(color: Colors.white,fontSize: 14),),
+                      title: Text(book['volumeInfo']['pageCount'].toString(), style: TextStyle(color: Colors.white,fontSize:18 )),
+                      subtitle: const Text('Page Count',style: TextStyle(color: Colors.white,fontSize: 12),),
                     ),
+                     if(book['volumeInfo']['publishedDate']!=null)
                     ListTile(
-                      title: Text(book.volumeInfo!.publishedDate!, style: TextStyle(color: Colors.white,fontSize:21 )),
-                      subtitle: const Text('Published Date',style: TextStyle(color: Colors.white,fontSize: 14),),
+                      title: Text(book['volumeInfo']['publishedDate'], style: TextStyle(color: Colors.white,fontSize:18 )),
+                      subtitle: const Text('Published Date',style: TextStyle(color: Colors.white,fontSize: 12),),
                     ),
+                     if(book['volumeInfo']['categories'][0]!=null)
                     ListTile(
-                      title: Text(book.volumeInfo!.categories!.first, style: TextStyle(color: Colors.white,fontSize:21 )),
-                      subtitle: const Text('Genre',style: TextStyle(color: Colors.white,fontSize: 14),),
+                      title: Text(book['volumeInfo']['categories'][0], style: TextStyle(color: Colors.white,fontSize:18 )),
+                      subtitle: const Text('Genre',style: TextStyle(color: Colors.white,fontSize: 12),),
                     ),
+                     if(book['volumeInfo']['printType']!=null)
                     ListTile(
-                      title: Text(book.volumeInfo!.printType!, style: TextStyle(color: Colors.white,fontSize:21 )),
-                      subtitle: const Text('Print Type',style: TextStyle(color: Colors.white,fontSize: 14),),
+                      title: Text(book['volumeInfo']['printType'], style: TextStyle(color: Colors.white,fontSize:18 )),
+                      subtitle: const Text('Print Type',style: TextStyle(color: Colors.white,fontSize: 12),),
                     ),
                     
                     // Add more details as needed
                   ],
-                ),*/
+                ),
               ],
             ),
-            SizedBox(height: 24.0),
-            // Section 3: Buttons
-           
+        
             
           ],
         ),
@@ -134,17 +142,28 @@ class SearchDetailsPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: (){  
-                  BlocProvider.of<BooksaveBloc>(context).add(AddBookEvent(BookShelfBook(book['volumeInfo']['title'],book['volumeInfo']['authors'][0], "My fav book")));
+                  style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll( Color.fromARGB(255, 59, 59, 59))),
+                  onPressed: ()async{  
+                  BlocProvider.of<BooksaveBloc>(context).add(AddBookEvent(BookShelfBook(book['volumeInfo']['title'],book['volumeInfo']['authors'][0],book['volumeInfo']['description'] )));
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Book added to shelf.")));
                   },
-                  child:const Text('Save to Shelf'),
+                  child:const Text('Save to Shelf',style: TextStyle(color: Colors.white),),
                 ),
                 ElevatedButton(
-                  onPressed: (){
-                    // Handle search online
+                  style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll( Color.fromARGB(255, 59, 59, 59))),
+                  onPressed: () async{
+                         
+     if(book['volumeInfo']['canonicalVolumeLink']!=null)
+     {   
+      String url=book['volumeInfo']['canonicalVolumeLink'];
+      _launchUrl(url);
+     }   
+     else
+     {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("No website link available",style: TextStyle(color: Colors.white),)));
+     }          
                   },
-                  child: const Text('Search Online'),
+                  child: const Text('Search Online',style: TextStyle(color: Colors.white)),
                 ),
               ],
             ),
@@ -153,3 +172,14 @@ class SearchDetailsPage extends StatelessWidget {
   }
 }
 
+
+ Future<void> _launchUrl(final String url) async {
+ try{
+   if (!await launchUrl(Uri.parse(url) )) {
+    throw Exception('Could not launch $url');
+  }
+ }
+ catch(e){
+  print(e);
+ }
+ }

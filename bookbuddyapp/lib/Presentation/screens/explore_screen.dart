@@ -93,7 +93,7 @@ class _ExploreScreen extends State<ExploreScreen>{
                {
                return GridView.builder(
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3, // Number of books in a row
+                          crossAxisCount: 2, // Number of books in a row
                           crossAxisSpacing: 3.0,
                           mainAxisSpacing: 7.0,
                           

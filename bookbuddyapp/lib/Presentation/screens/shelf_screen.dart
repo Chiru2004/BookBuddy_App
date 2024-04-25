@@ -1,7 +1,9 @@
 
 
 import 'package:bookbuddyapp/Blocs/booksave/booksave_bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
@@ -89,6 +91,62 @@ class _ShelfScreenState extends State<ShelfScreen> {
               ElevatedButton(
                 style:const  ButtonStyle(backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 223, 223, 223))),
                 onPressed: () {
+                  showModalBottomSheet(context: context, 
+                  builder: (context) {
+                    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey[800], // Grey background color
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Description',
+              style: TextStyle(
+                fontSize: 26.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[200], // White text color
+              ),
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  state.books[index].description,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.grey[200], // White text color
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 16.0), // Add some space between description and close button
+          Align(
+            alignment: Alignment.center,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the bottom sheet
+              },
+              child: const Text('Close',style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),),
+             
+            ),
+          ),
+          SizedBox(height: 16.0), // Add some space below the close button
+        ],
+      ),
+    );
+
+                  },);
                   // Add your functionality for the description button
                 },
                 child: const Text('Description',style: TextStyle(color: Color.fromARGB(255, 0, 0, 0),fontSize: 11),),
@@ -99,6 +157,7 @@ class _ShelfScreenState extends State<ShelfScreen> {
 
                 onPressed: () {
                   BlocProvider.of<BooksaveBloc>(context).add(RemoveBookEvent(state.books[index]));
+                  ScaffoldMessenger.of(context).clearSnackBars();
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Book removed from the shelf")));
                 },
                 style:const ButtonStyle(side: MaterialStatePropertyAll(BorderSide(width: 2,color: Colors.white)),),
@@ -110,20 +169,7 @@ class _ShelfScreenState extends State<ShelfScreen> {
         ],
       ),
     );
-                 
-                 
-                 /*
-                  ListTile(
-                  
-                  trailing: ElevatedButton(onPressed: (){
-                      BlocProvider.of<BooksaveBloc>(context).add(RemoveBookEvent(state.books[index]));
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Book removed from the shelf")));
-                  }, child: const Icon(Icons.remove,color: Colors.white,)
-                  ),
-                  subtitle: Text(state.books[index].author,style: const TextStyle(color: Colors.white,),),
-                  title: Text(state.books[index].title,style: const TextStyle(color: Colors.white,),
-                  
-                   ));*/
+
                 },
              );
           }
