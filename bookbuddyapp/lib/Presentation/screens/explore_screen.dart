@@ -16,7 +16,7 @@ class _ExploreScreen extends State<ExploreScreen>{
 
 @override
   void initState() {
-    exploreCategories.add(FetchExploreBooks("Thriller"));
+    exploreCategories.add(FetchExploreBooks("Education"));
     super.initState();
   }
 @override
@@ -31,87 +31,97 @@ class _ExploreScreen extends State<ExploreScreen>{
   @override
   Widget build(BuildContext context) {
     return BlocProvider(create: (context) => exploreCategories,
-    child:  Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(11.0),
-          child: Row(
-            children: [
-              const Text("Categories",style: TextStyle(color: Colors.white,fontSize: 21),),
-              Spacer(),
-              IconButton(onPressed: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchScreen(),));
-              },
-               icon: const Icon(Icons.search,color: Colors.white,))
-            ],
-          ),
+    child:  Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Explore Books",
+          style: TextStyle(color: Colors.white,fontSize: 28),
+          
         ),
-        const SizedBox(height: 4,),
-        Container(
-              height: 40,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: const [
-                  CategoryButton(category: 'Thriller'),
-                  CategoryButton(category: 'Romance'),
-                  CategoryButton(category: 'Biography'),
-                  CategoryButton(category: 'History'),
-                  CategoryButton(category: 'Horror'),
-                  CategoryButton(category: 'Self-help'),
-                  CategoryButton(category: 'Fantasy'),
-                   CategoryButton(category: 'Code'),
-                 //  CategoryButton(category: 'Children'),
-                  // Add more category buttons as needed
-                ],
+        backgroundColor: Colors.black,
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(11.0),
+            child: Row(
+              children: [
+                const Text("Categories",style: TextStyle(color: Colors.white,fontSize: 21),),
+                Spacer(),
+                IconButton(onPressed: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchScreen(),));
+                },
+                 icon: const Icon(Icons.search,color: Colors.white,))
+              ],
+            ),
+          ),
+          const SizedBox(height: 4,),
+          Container(
+                height: 40,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: const [
+                    CategoryButton(category: 'Education'),
+                    CategoryButton(category: 'Romance'),
+                    CategoryButton(category: 'Biography'),
+                    CategoryButton(category: 'History'),
+                    CategoryButton(category: 'Horror'),
+                    CategoryButton(category: 'Self-help'),
+                    CategoryButton(category: 'Fantasy'),
+                     CategoryButton(category: 'Education'),
+                   //  CategoryButton(category: 'Children'),
+                    // Add more category buttons as needed
+                  ],
+                ),
+              ),
+              const SizedBox(height: 7,),
+          Expanded(
+            child: Scaffold(
+              body: BlocBuilder<ExploreBloc,ExploreState>(
+              
+              //here builder is a pure function that we will use to fetch the data
+              // builder will called whenever there is change if state in the app
+              builder: (context,state) {
+               
+               if(state is ExploreLoading)
+               {
+            return const Center(child: 
+            Text("Fetching",style:TextStyle(color: Colors.white)),);
+               }
+               else
+               if(state is ExploreLoaded)
+               {
+               return GridView.builder(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3, // Number of books in a row
+                          crossAxisSpacing: 3.0,
+                          mainAxisSpacing: 7.0,
+                          
+                        ),
+                        
+                        itemCount: state.books.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          
+                           return BookTile(book: state.books[index]);
+                        },
+                      );
+      
+               }
+               else
+               if( state is ExploreError)
+               {
+            return const Center(child : Text("Failed to fetch",style: TextStyle(color: Colors.white),));
+               }
+               else
+               {
+            return const Center(child: Text('Press the button to load data'));
+               }
+                 }
               ),
             ),
-            const SizedBox(height: 7,),
-        Expanded(
-          child: Scaffold(
-            body: BlocBuilder<ExploreBloc,ExploreState>(
-            
-            //here builder is a pure function that we will use to fetch the data
-            // builder will called whenever there is change if state in the app
-            builder: (context,state) {
-             
-             if(state is ExploreLoading)
-             {
-          return const Center(child: 
-          Text("Fetching",style:TextStyle(color: Colors.white)),);
-             }
-             else
-             if(state is ExploreLoaded)
-             {
-             return GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3, // Number of books in a row
-                        crossAxisSpacing: 3.0,
-                        mainAxisSpacing: 7.0,
-                        
-                      ),
-                      
-                      itemCount: state.books.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        
-                         return BookTile(book: state.books[index]);
-                      },
-                    );
-
-             }
-             else
-             if( state is ExploreError)
-             {
-          return const Center(child : Text("Failed to fetch",style: TextStyle(color: Colors.white),));
-             }
-             else
-             {
-          return const Center(child: Text('Press the button to load data'));
-             }
-               }
-            ),
           ),
-        ),
-      ],
+        ],
+      ),
     )
   );
 }

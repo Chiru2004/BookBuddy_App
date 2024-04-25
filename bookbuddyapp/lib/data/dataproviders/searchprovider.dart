@@ -5,7 +5,7 @@ class SearchDataProvider
 {
 Future<List<dynamic>> getSearchData(String searchquery) async{
    
-var request =http.Request('GET',Uri.parse('https://www.googleapis.com/books/v1/volumes?q=$searchquery&key=AIzaSyCVBge_LrjN3F8MQpi6ajwSsxh04G8jcMc'));
+var request =http.Request('GET',Uri.parse('https://www.googleapis.com/books/v1/volumes?q=$searchquery&maxResults:12&key=AIzaSyCVBge_LrjN3F8MQpi6ajwSsxh04G8jcMc'));
 http.StreamedResponse response=await request.send().timeout(const Duration(seconds: 20));
 final value=jsonDecode(await response.stream.bytesToString());
 

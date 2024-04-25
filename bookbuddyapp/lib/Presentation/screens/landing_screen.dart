@@ -1,21 +1,31 @@
+import 'package:bookbuddyapp/Blocs/booksave/booksave_bloc.dart';
+import 'package:bookbuddyapp/services/saveservice.dart';
 import 'package:flutter/material.dart';
 import 'package:bookbuddyapp/Presentation/screens/explore_screen.dart';
 import 'package:bookbuddyapp/Presentation/screens/shelf_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookBuddyApp extends StatelessWidget {
-
-const BookBuddyApp({super.key});
+  const BookBuddyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-     debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.black,
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.grey[900], // Dark grey app bar
+    return RepositoryProvider(
+      create: (context) => SaveShelf(),
+      child: BlocProvider(
+        create: (context) =>  BooksaveBloc(RepositoryProvider.of<SaveShelf>(context)),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            textTheme: Typography.blackRedmond,
+            scaffoldBackgroundColor: Colors.black,
+            appBarTheme: AppBarTheme(
+              backgroundColor: Colors.grey[900], // Dark grey app bar
+            ),
+          ),
+          home: LandingPage(),
         ),
       ),
-      home: LandingPage(),
     );
   }
 }
@@ -26,35 +36,34 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  
-  // we set the inital page as the shelf screen 
+  // we set the inital page as the shelf screen
   int _selectedIndex = 0; // Index for bottom navigation bar
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Book Buddy',style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),), // Title on app bar
-        centerTitle: true,
-      ),
-      body: _getPage(_selectedIndex), // Displaying selected page
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey[900], // Dark grey background for bottom nav bar
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        currentIndex: _selectedIndex,
-        onTap: (index) => setState(() => _selectedIndex = index), // Updating selected index
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.library_books),
-            label: 'Shelf',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
-            label: 'Explore',
-          ),
-        ],
-      ),
+    return  Scaffold(
+       
+        body: _getPage(_selectedIndex), // Displaying selected page
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor:
+              Colors.grey[900], // Dark grey background for bottom nav bar
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.grey,
+          currentIndex: _selectedIndex,
+          onTap: (index) =>
+              setState(() => _selectedIndex = index), // Updating selected index
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.library_books),
+              label: 'Shelf',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.explore),
+              label: 'Explore',
+            ),
+          ],
+        ),
+      
     );
   }
 
@@ -69,5 +78,3 @@ class _LandingPageState extends State<LandingPage> {
     }
   }
 }
-
-

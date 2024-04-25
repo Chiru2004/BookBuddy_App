@@ -12,21 +12,19 @@ class CategoryButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: ElevatedButton(
-
         style: const ButtonStyle(
-          shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(9)))),
-          backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 81, 81, 81))),
-        onPressed: () {
+          shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(14)))),
+          backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 40, 40, 40))),
+        onPressed: (){
           final exploreBloc = BlocProvider.of<ExploreBloc>(context);
           exploreBloc.add(FetchExploreBooks(category));
         },
-
         child: Row(
-          children: [
+          children:[
             if(icon != null)
             Icon(icon,color: Colors.white,),
-           const SizedBox(width: 6,),
-            Text(category,style: const TextStyle(color: Colors.white,fontSize: 17),),
+           const SizedBox(width: 3,),
+            Text(category,style: const TextStyle(color: Colors.white,fontSize: 14),),
           ],
         ),
       ),

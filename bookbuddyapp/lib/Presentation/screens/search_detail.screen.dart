@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BookDetailsPage extends StatelessWidget {
+class SearchDetailsPage extends StatelessWidget {
  
- BookDetailsPage({super.key, required this.book});
- final category_data book;
+ const SearchDetailsPage({super.key, required this.book});
+ final dynamic book;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +31,14 @@ class BookDetailsPage extends StatelessWidget {
                 // Image of the book
                 GestureDetector(
                   onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ImageView(image: book.volumeInfo!.imageLinks!.thumbnail!),));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ImageView(image: book['volumeInfo']['imageLinks']['thumbnail']),));
                   },
                   child: Container(
                     width: 100,
                     height: 150,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(book.volumeInfo!.imageLinks!.thumbnail!),
+                        image: NetworkImage(book['volumeInfo']['imageLinks']['thumbnail']),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -53,12 +53,12 @@ class BookDetailsPage extends StatelessWidget {
                     children: [
                      const  SizedBox(height: 20,),
                       Text(
-                        book.volumeInfo!.title!,
+                        book['volumeInfo']['title'],
                         style:const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                      const  SizedBox(height: 8.0),
                       Text(
-                        'By \n'+book.volumeInfo!.authors!.first,
+                        'By \n'+book['volumeInfo']['authors'][0],
                         style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ],
@@ -66,12 +66,12 @@ class BookDetailsPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 24.0),
+           const SizedBox(height: 24.0),
             // Section 2: Navigation and Description
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-               
+               if(book['volumeInfo']['description']!=null)
                ExpansionTile(
               title: const Text(
                 'Description of the book',
@@ -81,15 +81,15 @@ class BookDetailsPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
-                    book.volumeInfo!.description!,
-                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                   book['volumeInfo']['description'],
+                    style: const TextStyle(fontSize: 14, color: Colors.white),
                   ),
                 ),
               ],
             ), 
                 SizedBox(height: 8.0),
                 // ListView for details
-                ListView(
+              /*  ListView(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(), // Disable scrolling
                   children: [
@@ -116,7 +116,7 @@ class BookDetailsPage extends StatelessWidget {
                     
                     // Add more details as needed
                   ],
-                ),
+                ),*/
               ],
             ),
             SizedBox(height: 24.0),
@@ -134,18 +134,17 @@ class BookDetailsPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () {
-                  // we add the code to send the initial values
-                  BlocProvider.of<BooksaveBloc>(context).add(AddBookEvent(BookShelfBook(book.volumeInfo!.title!,book.volumeInfo!.authors!.first, "My fav book")));
+                  onPressed: (){  
+                  BlocProvider.of<BooksaveBloc>(context).add(AddBookEvent(BookShelfBook(book['volumeInfo']['title'],book['volumeInfo']['authors'][0], "My fav book")));
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Book added to shelf.")));
                   },
-                  child: Text('Save to Shelf'),
+                  child:const Text('Save to Shelf'),
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: (){
                     // Handle search online
                   },
-                  child: Text('Search Online'),
+                  child: const Text('Search Online'),
                 ),
               ],
             ),

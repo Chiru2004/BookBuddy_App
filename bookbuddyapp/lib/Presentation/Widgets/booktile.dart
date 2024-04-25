@@ -40,6 +40,7 @@ class BookTile extends StatelessWidget {
                              const  SizedBox(height: 3.5,),
                               Text(
                           book.volumeInfo!.title!,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(fontSize: 9, color: Colors.white),
                           maxLines: 2
                           ,

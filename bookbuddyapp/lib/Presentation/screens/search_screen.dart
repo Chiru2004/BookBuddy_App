@@ -12,7 +12,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
-
+  int failed=0;
   @override
   void dispose() {
     _searchController.dispose();
@@ -31,19 +31,24 @@ SearchBloc searchbooks = SearchBloc();
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextField(
+                autofocus: true,
                 style: const TextStyle(color: Colors.white),
                 controller: _searchController,
                 decoration: const InputDecoration(
+                  focusColor: Colors.grey,
                   labelText: 'Enter your book name',
+                  labelStyle: TextStyle(color: Colors.white),
                   border: OutlineInputBorder(),
+                  
+                
                 ),
               ),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 7.0),
               ElevatedButton(
                 onPressed: () {
                 
@@ -53,9 +58,8 @@ SearchBloc searchbooks = SearchBloc();
                 },
                 child: const Text('Search'),
               ),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 7.0),
               Expanded(
-                
                 child: BlocBuilder<SearchBloc, SearchState>(
                   builder: (context, state) {
                 if (state is SearchInitial) {
@@ -67,21 +71,18 @@ SearchBloc searchbooks = SearchBloc();
                   );
                 } else if (state is SearchFound) {
                   return Scaffold(
-                    appBar: AppBar(
-                      backgroundColor: Colors.black,
-                      title: Text(
-                        "Total Search resutls: ${state.totresults}",
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
+                    
                     body: ListView.builder(
                       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                       itemCount: state.searchlist.length,
                       itemBuilder: (context, index) {
-                       if(state.searchlist[index]['volumeInfo']['imageLinks'] != null)
+                       if(state.searchlist[index]['volumeInfo']['imageLinks'] != null
+                       && state.searchlist[index]['volumeInfo']['authors'] != null
+                       ){
                         return SearchBox(imageUrl:state.searchlist[index]['volumeInfo']['imageLinks']['thumbnail'] , 
                         title:state.searchlist[index]['volumeInfo']['title'],
-                         subtitle: state.searchlist[index]['volumeInfo']['authors'][0]);
+                         subtitle: state.searchlist[index]['volumeInfo']['authors'][0],book: state.searchlist[index],);
+                       }
                         /*
                         ListTile(
                           title: Text(
