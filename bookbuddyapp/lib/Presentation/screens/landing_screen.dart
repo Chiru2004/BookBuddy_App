@@ -13,11 +13,14 @@ class BookBuddyApp extends StatelessWidget {
     return RepositoryProvider(
       create: (context) => SaveShelf(),
       child: BlocProvider(
-        create: (context) =>  BooksaveBloc(RepositoryProvider.of<SaveShelf>(context)),
+        create: (context) =>
+            BooksaveBloc(RepositoryProvider.of<SaveShelf>(context)),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            textTheme: Typography.blackRedmond,
+            fontFamily: GoogleFonts.raleway().fontFamily,
+            textTheme:
+                GoogleFonts.ralewayTextTheme(Theme.of(context).textTheme),
             scaffoldBackgroundColor: Colors.black,
             appBarTheme: AppBarTheme(
               backgroundColor: Colors.grey[900], // Dark grey app bar
@@ -31,6 +34,7 @@ class BookBuddyApp extends StatelessWidget {
 }
 
 class LandingPage extends StatefulWidget {
+  const LandingPage({super.key});
   @override
   _LandingPageState createState() => _LandingPageState();
 }
@@ -41,36 +45,34 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-       
-        body: _getPage(_selectedIndex), // Displaying selected page
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor:
-              Colors.grey[900], // Dark grey background for bottom nav bar
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.grey,
-          currentIndex: _selectedIndex,
-          onTap: (index) =>
-              setState(() => _selectedIndex = index), // Updating selected index
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.library_books),
-              label: 'Shelf',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.explore),
-              label: 'Explore',
-            ),
-          ],
-        ),
-      
+    return Scaffold(
+      body: _getPage(_selectedIndex), // Displaying selected page
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor:
+            Colors.grey[900], // Dark grey background for bottom nav bar
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        currentIndex: _selectedIndex,
+        onTap: (index) =>
+            setState(() => _selectedIndex = index), // Updating selected index
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.library_books),
+            label: 'Shelf',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.explore),
+            label: 'Explore',
+          ),
+        ],
+      ),
     );
   }
 
   Widget _getPage(int index) {
     switch (index) {
       case 0:
-        return ShelfScreen(); // Display ShelfPage when index is 0
+        return const ShelfScreen(); // Display ShelfPage when index is 0
       case 1:
         return ExploreScreen(); // Display ExplorePage when index is 1
       default:

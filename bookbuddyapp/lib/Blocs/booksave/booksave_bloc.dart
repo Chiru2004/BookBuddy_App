@@ -13,11 +13,8 @@ class BooksaveBloc extends Bloc<BooksaveEvent, BooksaveState> {
   BooksaveBloc(this._saveservice) : super(BooksaveInitial()) {
    
     on<LoadBooksEvent>((event, emit) {
-  print('hi');
     emit(FetchingShelfBooksState());
     final books = _saveservice.getBooks();
-    print(books.length);
-    print("helloo");
     emit(FetchBooksState(books));
     });
 

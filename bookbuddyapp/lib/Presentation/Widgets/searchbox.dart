@@ -6,19 +6,21 @@ class SearchBox extends StatelessWidget {
   final String title;
   final String subtitle;
   final dynamic book;
-  const SearchBox({
-    Key? key,
-    required this.imageUrl,
-    required this.title,
-    required this.subtitle,
-    required this.book
-  }) : super(key: key);
+  const SearchBox(
+      {Key? key,
+      required this.imageUrl,
+      required this.title,
+      required this.subtitle,
+      required this.book})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchDetailsPage(book: book),));
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => SearchDetailsPage(book: book),
+        ));
       },
       child: Padding(
         padding: const EdgeInsets.all(5.0),
@@ -40,18 +42,13 @@ class SearchBox extends StatelessWidget {
             children: [
               Text(
                 title,
-                style:const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white
-                ),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.white),
               ),
               SizedBox(height: 3),
               Text(
                 subtitle,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 14
-                ),
+                style: const TextStyle(color: Colors.grey, fontSize: 14),
               ),
             ],
           ),

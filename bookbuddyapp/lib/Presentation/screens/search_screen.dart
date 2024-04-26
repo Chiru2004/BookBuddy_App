@@ -1,37 +1,36 @@
-import 'package:bookbuddyapp/Presentation/Widgets/imageview.dart';
 import 'package:bookbuddyapp/Presentation/Widgets/searchbox.dart';
 import 'package:flutter/material.dart';
 import 'package:bookbuddyapp/Blocs/search_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-
 class SearchScreen extends StatefulWidget {
+  SearchScreen({super.key});
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
-  String _searchQuery = '';
-  int failed=0;
+  int failed = 0;
   @override
   void dispose() {
     _searchController.dispose();
     super.dispose();
   }
-SearchBloc searchbooks = SearchBloc();
+
+  SearchBloc searchbooks = SearchBloc();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => searchbooks,
       child: Scaffold(
         appBar: AppBar(
-          
-                      leading: IconButton(
-                      icon: Icon(Icons.arrow_back_ios, color: const Color.fromARGB(255, 255, 255, 255)),
-                      onPressed: () => Navigator.of(context).pop(),
-                      ),
+          leading: IconButton(
+            icon:const Icon(Icons.arrow_back_ios,
+                color: Color.fromARGB(255, 255, 255, 255)),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
           title: const Text(
             'Search for Books',
             style: TextStyle(color: Colors.white),
@@ -48,26 +47,27 @@ SearchBloc searchbooks = SearchBloc();
                 controller: _searchController,
                 decoration: const InputDecoration(
                   focusColor: Colors.grey,
-              
                   labelText: 'Enter your book name',
                   labelStyle: TextStyle(color: Colors.white),
                   border: OutlineInputBorder(),
-                  
-                
                 ),
               ),
               const SizedBox(height: 7.0),
               OutlinedButton(
                 onPressed: () {
                   searchbooks.add(FetchSearchBooks(_searchController.text));
-                  _searchQuery = _searchController.text;
+                  //
                 },
-                style:const ButtonStyle(side: MaterialStatePropertyAll(BorderSide(color: Colors.white,width: 1.5))),
-                child: const Text('Search',style: TextStyle(color: Colors.white),),
+                style: const ButtonStyle(
+                    side: MaterialStatePropertyAll(
+                        BorderSide(color: Colors.white, width: 1.5))),
+                child: const Text(
+                  'Search',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
               const SizedBox(height: 7.0),
-              Expanded(
-                child: BlocBuilder<SearchBloc, SearchState>(
+              Expanded(child: BlocBuilder<SearchBloc, SearchState>(
                   builder: (context, state) {
                 if (state is SearchInitial) {
                   return const Center(
@@ -78,41 +78,49 @@ SearchBloc searchbooks = SearchBloc();
                   );
                 } else if (state is SearchFound) {
                   return Scaffold(
-                    
                     body: ListView.builder(
-                      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                      keyboardDismissBehavior:
+                          ScrollViewKeyboardDismissBehavior.onDrag,
                       itemCount: state.searchlist.length,
                       itemBuilder: (context, index) {
-                       if(state.searchlist[index]['volumeInfo']['imageLinks'] != null
-                       && state.searchlist[index]['volumeInfo']['authors'] != null
-                       ){
-                        return SearchBox(imageUrl:state.searchlist[index]['volumeInfo']['imageLinks']['thumbnail'] , 
-                        title:state.searchlist[index]['volumeInfo']['title'],
-                         subtitle: state.searchlist[index]['volumeInfo']['authors'][0],book: state.searchlist[index],);
-                       }
-                       
+
+                        if (state.searchlist[index]['volumeInfo']['imageLinks'] != null &&
+                            state.searchlist[index]['volumeInfo']['authors'] !=null
+                            ) {
+                          return SearchBox(
+                            imageUrl: state.searchlist[index]['volumeInfo']
+                                ['imageLinks']['thumbnail'],
+                            title: state.searchlist[index]['volumeInfo']
+                                ['title'],
+                            subtitle: state.searchlist[index]['volumeInfo']
+                                ['authors'][0],
+                            book: state.searchlist[index],
+                          );
+                        }
                       },
                     ),
                   );
                 } else if (state is SearchSearching) {
                   return const Center(
-          // Use SpinKitFoldingCube for the folding cube loading indicator
-          child: SpinKitFoldingCube(
-            color: Color.fromARGB(255, 150, 150, 150), // You can customize the color
-            size: 50.0, // You can customize the size
-          ),
-        );
+                    // Use SpinKitFoldingCube for the folding cube loading indicator
+                    child: SpinKitFoldingCube(
+                      color: Color.fromARGB(
+                          255, 150, 150, 150), // You can customize the color
+                      size: 50.0, // You can customize the size
+                    ),
+                  );
                 } else {
                   return const Center(
                     child: Text(
                       "Search Failed!",
-                      style: TextStyle(color: Colors.white),
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                     ),
                   );
                 }
+              
               }))
-
-              // Add your search results UI here, if any
+              //
             ],
           ),
         ),
