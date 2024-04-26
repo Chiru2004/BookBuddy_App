@@ -1,25 +1,28 @@
 
 import 'package:bookbuddyapp/Presentation/screens/bookdetails_screen.dart';
+import 'package:bookbuddyapp/Presentation/screens/search_detail.screen.dart';
 import 'package:bookbuddyapp/data/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class BookTile extends StatelessWidget {
-  final category_data book;
+  final dynamic book;
 
   const BookTile({super.key,required this.book});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+    //  width: 100,
+   // height: 100,
       child: Column(
+
         children: [
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => BookDetailsPage(book: book) ,));
+               Navigator.push(context, MaterialPageRoute(builder: (context) => SearchDetailsPage(book: book) ,));
                 // Handle book tap
               },
               child:  Column(
@@ -30,27 +33,28 @@ class BookTile extends StatelessWidget {
                   decoration: BoxDecoration(
                    borderRadius: BorderRadius.circular(7),
                    image: DecorationImage(image: NetworkImage(
-                    book.volumeInfo!.imageLinks!.thumbnail!,
-                    
+                    book['volumeInfo']['imageLinks']['thumbnail'],
                    ),
                    fit: BoxFit.cover
                    )
                   )
                               ),
                              const  SizedBox(height: 3.5,),
-                              Text(
-                          book.volumeInfo!.title!,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(fontSize: 9, color: Colors.white),
-                          maxLines: 2
-                          ,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                              Container(
+                                width: 100,
+                                child: Text(
+                                        
+                                        book['volumeInfo']['title'],
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(fontSize: 11, color: Colors.white),
+                                        maxLines: 2
+                                        ,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                              ),
                 ],
               ),
-            
-            
-              ),
+              ),// 
           ),
         ],
       ),

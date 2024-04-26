@@ -47,11 +47,14 @@ class _ExploreScreen extends State<ExploreScreen>{
             child: Row(
               children: [
                 const Text("Categories",style: TextStyle(color: Colors.white,fontSize: 21),),
-                Spacer(),
-                IconButton(onPressed: (){
+                const Spacer(),
+                OutlinedButton(
+                  style: const ButtonStyle(side: MaterialStatePropertyAll(BorderSide(color: Colors.white,width: 1.5))),
+                  onPressed: (){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchScreen(),));
                 },
-                 icon: const Icon(Icons.search,color: Colors.white,))
+   
+                 child: const Icon(Icons.search,color: Colors.white,))
               ],
             ),
           ),
@@ -61,15 +64,18 @@ class _ExploreScreen extends State<ExploreScreen>{
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: const [
-                    CategoryButton(category: 'Education'),
-                    CategoryButton(category: 'Romance'),
-                    CategoryButton(category: 'Biography'),
-                    CategoryButton(category: 'History'),
-                    CategoryButton(category: 'Horror'),
-                    CategoryButton(category: 'Self-help'),
-                    CategoryButton(category: 'Fantasy'),
-                     CategoryButton(category: 'Education'),
-                   //  CategoryButton(category: 'Children'),
+                    CategoryButton(category: 'Education',coloor: Colors.green,),
+                     CategoryButton(category: 'Crime',coloor: Colors.yellow,),
+                     CategoryButton(category: 'Suspense',coloor: Colors.brown,),
+                     CategoryButton(category: 'Anime',coloor: Colors.red),
+                    CategoryButton(category: 'Drama',coloor: Color.fromARGB(255, 94, 178, 248),),
+                    CategoryButton(category: 'Biography',coloor: Colors.orange,),
+                    CategoryButton(category: 'History',coloor: Colors.grey,),
+                    CategoryButton(category: 'Horror',coloor: Colors.deepPurpleAccent,),
+                    CategoryButton(category: 'Self-help',coloor: Colors.pink,),
+                    CategoryButton(category: 'Fantasy',coloor: Color.fromARGB(255, 10, 130, 14),),
+                     CategoryButton(category: 'Education',coloor: Colors.indigo,),
+                    CategoryButton(category: 'Children',coloor: Colors.limeAccent,),
                     // Add more category buttons as needed
                   ],
                 ),
@@ -91,18 +97,23 @@ class _ExploreScreen extends State<ExploreScreen>{
                else
                if(state is ExploreLoaded)
                {
+                
                return GridView.builder(
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2, // Number of books in a row
-                          crossAxisSpacing: 3.0,
-                          mainAxisSpacing: 7.0,
+                          crossAxisSpacing: 1.0,
+                          mainAxisSpacing: 1.0,
                           
                         ),
                         
                         itemCount: state.books.length,
                         itemBuilder: (BuildContext context, int index) {
                           
-                           return BookTile(book: state.books[index]);
+                          if(state.books[index]['volumeInfo']['imageLinks'] != null
+                       && state.books[index]['volumeInfo']['authors'] != null)
+                       {
+                          return BookTile(book: state.books[index]);
+                       }
                         },
                       );
       

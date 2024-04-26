@@ -13,7 +13,7 @@ class ExploreInitial extends ExploreState {}
 class ExploreLoading extends ExploreState {}
 
 class ExploreLoaded extends ExploreState {
-  final List<category_data> books;
+  final List<dynamic> books;
   const ExploreLoaded(this.books);
 }
 

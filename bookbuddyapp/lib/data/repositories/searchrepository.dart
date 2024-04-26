@@ -25,16 +25,7 @@ print(wholedata[0]['volumeInfo']['title']);
 
  print("helllooooooooooooooooooooooo");
 print(newlist.length);
-
-  // final List<Map<String,dynamic>> listofcategories = wholedata;
-  
-  // final List<category_data> finaldata=[];
-
-  // for(Map<String,dynamic> data in listofcategories)
-  // {
-  //  finaldata.add(category_data.fromJson(data));
-  // }
-  // log(finaldata.length.toString());
+//
   return wholedata;
 }
 }

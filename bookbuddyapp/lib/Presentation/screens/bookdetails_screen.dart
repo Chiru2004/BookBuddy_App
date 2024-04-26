@@ -3,7 +3,6 @@ import 'package:bookbuddyapp/Presentation/Widgets/imageview.dart';
 import 'package:bookbuddyapp/data/models/book.dart';
 import 'package:bookbuddyapp/data/models/category.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookDetailsPage extends StatelessWidget {
