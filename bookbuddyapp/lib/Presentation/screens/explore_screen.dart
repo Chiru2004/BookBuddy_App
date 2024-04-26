@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bookbuddyapp/Presentation/Widgets/category_button.dart';
 import 'package:bookbuddyapp/Presentation/Widgets/booktile.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 
 
 class ExploreScreen extends StatefulWidget {
@@ -67,7 +69,7 @@ class _ExploreScreen extends State<ExploreScreen>{
                     CategoryButton(category: 'Education',coloor: Colors.green,),
                      CategoryButton(category: 'Crime',coloor: Colors.yellow,),
                      CategoryButton(category: 'Suspense',coloor: Colors.brown,),
-                     CategoryButton(category: 'Anime',coloor: Colors.red),
+                     CategoryButton(category: 'Health',coloor: Colors.red),
                     CategoryButton(category: 'Drama',coloor: Color.fromARGB(255, 94, 178, 248),),
                     CategoryButton(category: 'Biography',coloor: Colors.orange,),
                     CategoryButton(category: 'History',coloor: Colors.grey,),
@@ -75,7 +77,7 @@ class _ExploreScreen extends State<ExploreScreen>{
                     CategoryButton(category: 'Self-help',coloor: Colors.pink,),
                     CategoryButton(category: 'Fantasy',coloor: Color.fromARGB(255, 10, 130, 14),),
                      CategoryButton(category: 'Education',coloor: Colors.indigo,),
-                    CategoryButton(category: 'Children',coloor: Colors.limeAccent,),
+                    CategoryButton(category: 'Computer Science',coloor: Colors.limeAccent,),
                     // Add more category buttons as needed
                   ],
                 ),
@@ -91,8 +93,13 @@ class _ExploreScreen extends State<ExploreScreen>{
                
                if(state is ExploreLoading)
                {
-            return const Center(child: 
-            Text("Fetching",style:TextStyle(color: Colors.white)),);
+            return const Center(
+          
+          child: SpinKitFoldingCube(
+            color: Color.fromARGB(255, 255, 255, 255), // You can customize the color
+            size: 50.0, // You can customize the size
+          ),
+        );
                }
                else
                if(state is ExploreLoaded)

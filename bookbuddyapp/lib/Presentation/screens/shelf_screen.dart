@@ -40,8 +40,12 @@ class _ShelfScreenState extends State<ShelfScreen> {
           {
             if(state.books.length == 0)
             {
-              return const Center(
-                child: Text("No books saved in shelf",style: TextStyle(color: Colors.white),),
+              return Center(
+                child:Container(
+                  height: 650,
+                  width: 650,
+                  child: Image(image: AssetImage('assets/empty_rack.png'),fit: BoxFit.contain,),
+                ),
               );
             }
             else{
@@ -119,7 +123,7 @@ class _ShelfScreenState extends State<ShelfScreen> {
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
                   state.books[index].description,
                   style: TextStyle(
@@ -130,7 +134,7 @@ class _ShelfScreenState extends State<ShelfScreen> {
               ),
             ),
           ),
-          SizedBox(height: 16.0), // Add some space between description and close button
+          const SizedBox(height: 16.0), // Add some space between description and close button
           Align(
             alignment: Alignment.center,
             child: ElevatedButton(
@@ -141,7 +145,7 @@ class _ShelfScreenState extends State<ShelfScreen> {
              
             ),
           ),
-          SizedBox(height: 16.0), // Add some space below the close button
+         const SizedBox(height: 16.0), // Add some space below the close button
         ],
       ),
     );

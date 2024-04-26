@@ -20,6 +20,11 @@ class SearchDetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black, // Dark background color
       appBar: AppBar(
+        
+                      leading: IconButton(
+                      icon: Icon(Icons.arrow_back_ios, color: const Color.fromARGB(255, 255, 255, 255)),
+                      onPressed: () => Navigator.of(context).pop(),
+                      ),
         title: const Text("Details",style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.black, // Match the background color
       ),
@@ -48,23 +53,27 @@ class SearchDetailsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 16.0),
+                const SizedBox(width: 12.0),
                 // Title and Author
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                     const  SizedBox(height: 20,),
+                     const  SizedBox(height: 8,),
                       Text(
                         book['volumeInfo']['title'],
                         style:const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
-                     const  SizedBox(height: 8.0),
+                     const  SizedBox(height: 4.0),
                       Text(
                         'By \n'+book['volumeInfo']['authors'][0],
-                        style: TextStyle(fontSize: 16, color: Colors.white),
+                        style: TextStyle(fontSize: 14, color: Colors.white),
                       ),
+                     if(book['volumeInfo']['authors'].length > 1)
+                     Text(book['volumeInfo']['authors'][1],
+                        style: const TextStyle(fontSize: 14, color: Colors.white),
+                      )
                     ],
                   ),
                 ),
@@ -91,12 +100,19 @@ class SearchDetailsPage extends StatelessWidget {
                 ),
               ],
             ), 
-                SizedBox(height: 8.0),
+                const SizedBox(height: 4.0),
                 // ListView for details
                ListView(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(), // Disable scrolling
                   children: [
+                     if(book['volumeInfo']['averageRating']!=null)
+                    ListTile(
+                      title: Text(book['volumeInfo']['averageRating'].toString(), style: TextStyle(color: Colors.white,fontSize:18 )),
+                      subtitle: const Text('Book Rating',style: TextStyle(color: Colors.white,fontSize: 12),),
+                    ),
+
+
                     if(book['volumeInfo']['language']!=null)
                     ListTile(
                       title: Text(book['volumeInfo']['language'], style: TextStyle(color: Colors.white,fontSize:18 )),
@@ -108,22 +124,34 @@ class SearchDetailsPage extends StatelessWidget {
                       title: Text(book['volumeInfo']['pageCount'].toString(), style: TextStyle(color: Colors.white,fontSize:18 )),
                       subtitle: const Text('Page Count',style: TextStyle(color: Colors.white,fontSize: 12),),
                     ),
+
                      if(book['volumeInfo']['publishedDate']!=null)
                     ListTile(
                       title: Text(book['volumeInfo']['publishedDate'], style: TextStyle(color: Colors.white,fontSize:18 )),
                       subtitle: const Text('Published Date',style: TextStyle(color: Colors.white,fontSize: 12),),
                     ),
+
                      if(book['volumeInfo']['categories'][0]!=null)
                     ListTile(
                       title: Text(book['volumeInfo']['categories'][0], style: TextStyle(color: Colors.white,fontSize:18 )),
                       subtitle: const Text('Genre',style: TextStyle(color: Colors.white,fontSize: 12),),
                     ),
+
                      if(book['volumeInfo']['printType']!=null)
                     ListTile(
                       title: Text(book['volumeInfo']['printType'], style: TextStyle(color: Colors.white,fontSize:18 )),
                       subtitle: const Text('Print Type',style: TextStyle(color: Colors.white,fontSize: 12),),
                     ),
-                    
+                    if(book['volumeInfo']['previewLink']!=null)
+                    ListTile(
+                      title: const Text("Preview link available", style: TextStyle(color: Colors.white,fontSize:18 )),
+                      trailing: OutlinedButton(onPressed: (){
+                            _launchUrl(book['volumeInfo']['previewLink']);
+                      }, 
+                        style:const ButtonStyle(side: MaterialStatePropertyAll(BorderSide(color: Colors.white,width: 1.5))),
+                child: const Text('View Online',style: TextStyle(color: Colors.white),),
+                    ),
+                    )
                     // Add more details as needed
                   ],
                 ),
@@ -144,6 +172,29 @@ class SearchDetailsPage extends StatelessWidget {
                 ElevatedButton(
                   style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll( Color.fromARGB(255, 59, 59, 59))),
                   onPressed: ()async{  
+                    if(book['volumeInfo']['description']!=null)
+                    {
+                       BlocProvider.of<BooksaveBloc>(context).add(
+                        AddBookEvent(
+                          BookShelfBook(
+                            book['volumeInfo']['title'],
+                            book['volumeInfo']['authors'][0],
+                            book['volumeInfo']['description'] 
+                            )
+                            )
+                            );
+                    }
+                    else{
+                        BlocProvider.of<BooksaveBloc>(context).add(
+                        AddBookEvent(
+                          BookShelfBook(
+                            book['volumeInfo']['title'],
+                            book['volumeInfo']['authors'][0],
+                           "No descrpition available" 
+                            )
+                            )
+                            );
+                    }
                   BlocProvider.of<BooksaveBloc>(context).add(AddBookEvent(BookShelfBook(book['volumeInfo']['title'],book['volumeInfo']['authors'][0],book['volumeInfo']['description'] )));
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Book added to shelf.")));
                   },

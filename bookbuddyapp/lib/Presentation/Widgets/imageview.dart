@@ -10,6 +10,10 @@ class ImageView extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         
+                      leading: IconButton(
+                      icon: Icon(Icons.arrow_back_ios, color: const Color.fromARGB(255, 255, 255, 255)),
+                      onPressed: () => Navigator.of(context).pop(),
+                      ),
         title: const Text("Book Cover",style: TextStyle(color: Colors.white),),
       ),
       body: Center(

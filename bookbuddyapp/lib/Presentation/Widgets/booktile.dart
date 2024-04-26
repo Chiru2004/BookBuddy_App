@@ -32,6 +32,14 @@ class BookTile extends StatelessWidget {
                   width: 100, // Adjust the width as needed
                   decoration: BoxDecoration(
                    borderRadius: BorderRadius.circular(7),
+                   boxShadow: [
+                    BoxShadow(
+                      
+                      color: Color.fromARGB(255, 53, 53, 53),
+                      blurRadius: 3,
+                      offset: Offset(3, 3)
+                    )
+                   ],
                    image: DecorationImage(image: NetworkImage(
                     book['volumeInfo']['imageLinks']['thumbnail'],
                    ),
@@ -39,7 +47,7 @@ class BookTile extends StatelessWidget {
                    )
                   )
                               ),
-                             const  SizedBox(height: 3.5,),
+                             const  SizedBox(height: 5,),
                               Container(
                                 width: 100,
                                 child: Text(

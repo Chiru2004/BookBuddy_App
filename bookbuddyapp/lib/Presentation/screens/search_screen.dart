@@ -3,6 +3,8 @@ import 'package:bookbuddyapp/Presentation/Widgets/searchbox.dart';
 import 'package:flutter/material.dart';
 import 'package:bookbuddyapp/Blocs/search_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -25,6 +27,11 @@ SearchBloc searchbooks = SearchBloc();
       create: (context) => searchbooks,
       child: Scaffold(
         appBar: AppBar(
+          
+                      leading: IconButton(
+                      icon: Icon(Icons.arrow_back_ios, color: const Color.fromARGB(255, 255, 255, 255)),
+                      onPressed: () => Navigator.of(context).pop(),
+                      ),
           title: const Text(
             'Search for Books',
             style: TextStyle(color: Colors.white),
@@ -41,6 +48,7 @@ SearchBloc searchbooks = SearchBloc();
                 controller: _searchController,
                 decoration: const InputDecoration(
                   focusColor: Colors.grey,
+              
                   labelText: 'Enter your book name',
                   labelStyle: TextStyle(color: Colors.white),
                   border: OutlineInputBorder(),
@@ -49,14 +57,13 @@ SearchBloc searchbooks = SearchBloc();
                 ),
               ),
               const SizedBox(height: 7.0),
-              ElevatedButton(
+              OutlinedButton(
                 onPressed: () {
-                
-                
                   searchbooks.add(FetchSearchBooks(_searchController.text));
                   _searchQuery = _searchController.text;
                 },
-                child: const Text('Search'),
+                style:const ButtonStyle(side: MaterialStatePropertyAll(BorderSide(color: Colors.white,width: 1.5))),
+                child: const Text('Search',style: TextStyle(color: Colors.white),),
               ),
               const SizedBox(height: 7.0),
               Expanded(
@@ -83,23 +90,18 @@ SearchBloc searchbooks = SearchBloc();
                         title:state.searchlist[index]['volumeInfo']['title'],
                          subtitle: state.searchlist[index]['volumeInfo']['authors'][0],book: state.searchlist[index],);
                        }
-                        /*
-                        ListTile(
-                          title: Text(
-                            state.searchlist[index]['volumeInfo']['title'],
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        );*/
+                       
                       },
                     ),
                   );
                 } else if (state is SearchSearching) {
                   return const Center(
-                    child: Text(
-                      "Loading your search",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  );
+          // Use SpinKitFoldingCube for the folding cube loading indicator
+          child: SpinKitFoldingCube(
+            color: Color.fromARGB(255, 150, 150, 150), // You can customize the color
+            size: 50.0, // You can customize the size
+          ),
+        );
                 } else {
                   return const Center(
                     child: Text(
