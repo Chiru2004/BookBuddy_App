@@ -37,7 +37,7 @@ class _ExploreScreen extends State<ExploreScreen> {
           appBar: AppBar(
             title: const Text(
               "Explore Books",
-              style: TextStyle(color: Colors.white, fontSize: 28),
+              style: TextStyle(color: Colors.white, fontSize: 26),
             ),
             backgroundColor: Colors.black,
           ),
@@ -58,12 +58,23 @@ class _ExploreScreen extends State<ExploreScreen> {
                                 BorderSide(color: Colors.white, width: 1.5))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SearchScreen(),
+                            builder: (context) => const SearchScreen(),
                           ));
                         },
-                        child: const Icon(
-                          Icons.search,
-                          color: Colors.white,
+                        child: const Row(
+                          children: [
+                            Icon(
+                              Icons.search,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 2,
+                            ),
+                            Text(
+                              "Search",
+                              style: TextStyle(color: Colors.white),
+                            )
+                          ],
                         ))
                   ],
                 ),
@@ -114,7 +125,7 @@ class _ExploreScreen extends State<ExploreScreen> {
                       coloor: Color.fromARGB(255, 10, 130, 14),
                     ),
                     CategoryButton(
-                      category: 'Education',
+                      category: 'Comedy',
                       coloor: Colors.indigo,
                     ),
                     CategoryButton(

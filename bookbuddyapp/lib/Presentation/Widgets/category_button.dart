@@ -20,16 +20,11 @@ class CategoryButton extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(14)),
-              //  color: coloor,
+              borderRadius: const BorderRadius.all(Radius.circular(14)),
               gradient: LinearGradient(
                   colors: [coloor.withOpacity(0.9), coloor.withOpacity(0.2)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight)),
-          // style: const ButtonStyle(
-          //   shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(14)))),
-          //   backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 40, 40, 40))),
-
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

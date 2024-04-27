@@ -1,8 +1,7 @@
-import 'package:bookbuddyapp/Presentation/screens/bookdetails_screen.dart';
 import 'package:bookbuddyapp/Presentation/screens/search_detail.screen.dart';
-import 'package:bookbuddyapp/data/models/category.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart';//refractors
+
 
 class BookTile extends StatelessWidget {
   final dynamic book;
@@ -11,9 +10,7 @@ class BookTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //  width: 100,
-      // height: 100,
+    return SizedBox(
       child: Column(
         children: [
           Padding(
@@ -34,7 +31,7 @@ class BookTile extends StatelessWidget {
                       width: 100, // Adjust the width as needed
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(7),
-                          boxShadow:const [
+                          boxShadow: const [
                             BoxShadow(
                                 color: Color.fromARGB(255, 53, 53, 53),
                                 blurRadius: 3,
@@ -48,7 +45,7 @@ class BookTile extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  Container(
+                  SizedBox(
                     width: 100,
                     child: Text(
                       book['volumeInfo']['title'],

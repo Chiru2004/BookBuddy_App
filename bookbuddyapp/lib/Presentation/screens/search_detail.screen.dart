@@ -126,7 +126,7 @@ class SearchDetailsPage extends StatelessWidget {
                                 const TextStyle(color: Colors.white, fontSize: 18)),
                         subtitle: const Text(
                           'Book Rating',
-                          style: TextStyle(color: Colors.white, fontSize: 12),
+                          style: TextStyle(color: Color.fromARGB(255, 159, 159, 159), fontSize: 12),
                         ),
                       ),
 
@@ -137,7 +137,7 @@ class SearchDetailsPage extends StatelessWidget {
                                 const TextStyle(color: Colors.white, fontSize: 18)),
                         subtitle: const Text(
                           'Language',
-                          style: TextStyle(color: Colors.white, fontSize: 12),
+                          style: TextStyle(color: Color.fromARGB(255, 159, 159, 159), fontSize: 12),
                         ),
                       ),
 
@@ -148,7 +148,7 @@ class SearchDetailsPage extends StatelessWidget {
                                 const TextStyle(color: Colors.white, fontSize: 18)),
                         subtitle: const Text(
                           'Page Count',
-                          style: TextStyle(color: Colors.white, fontSize: 12),
+                          style: TextStyle(color: Color.fromARGB(255, 159, 159, 159), fontSize: 12),
                         ),
                       ),
 
@@ -159,7 +159,7 @@ class SearchDetailsPage extends StatelessWidget {
                                 const TextStyle(color: Colors.white, fontSize: 18)),
                         subtitle: const Text(
                           'Published Date',
-                          style: TextStyle(color: Colors.white, fontSize: 12),
+                          style: TextStyle(color: Color.fromARGB(255, 159, 159, 159), fontSize: 12),
                         ),
                       ),
 
@@ -171,7 +171,7 @@ class SearchDetailsPage extends StatelessWidget {
                                 const TextStyle(color: Colors.white, fontSize: 18)),
                         subtitle: const Text(
                           'Genre',
-                          style: TextStyle(color: Colors.white, fontSize: 12),
+                          style: TextStyle(color:  Color.fromARGB(255, 159, 159, 159), fontSize: 12),
                         ),
                       ),
 
@@ -182,14 +182,14 @@ class SearchDetailsPage extends StatelessWidget {
                                 const TextStyle(color: Colors.white, fontSize: 18)),
                         subtitle: const Text(
                           'Print Type',
-                          style: TextStyle(color: Colors.white, fontSize: 12),
+                          style: TextStyle(color: Color.fromARGB(255, 159, 159, 159), fontSize: 12),
                         ),
                       ),
                     if (book['volumeInfo']['previewLink'] != null)
                       ListTile(
                         title: const Text("Preview link available",
                             style:
-                                TextStyle(color: Colors.white, fontSize: 18)),
+                                TextStyle(color: Colors.white, fontSize: 16)),
                         trailing: OutlinedButton(
                           onPressed: () {
                             _launchUrl(book['volumeInfo']['previewLink']);

@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SearchScreen extends StatefulWidget {
-  SearchScreen({super.key});
+  const SearchScreen({super.key});
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
@@ -104,8 +104,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   return const Center(
                     // Use SpinKitFoldingCube for the folding cube loading indicator
                     child: SpinKitFoldingCube(
-                      color: Color.fromARGB(
-                          255, 150, 150, 150), // You can customize the color
+                      color: Color.fromARGB(255, 255, 255, 255), // You can customize the color
                       size: 50.0, // You can customize the size
                     ),
                   );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ImageView extends StatelessWidget {
-  ImageView({super.key, required this.image});
+  const ImageView({super.key, required this.image});
   final String image;
 
   @override
@@ -10,7 +10,7 @@ class ImageView extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios,
-              color: const Color.fromARGB(255, 255, 255, 255)),
+              color:  Color.fromARGB(255, 255, 255, 255)),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
@@ -19,9 +19,9 @@ class ImageView extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Container(
-            height: 360,
-            width: 220,
+        child: SizedBox(
+            height: 300,
+            width: 200,
             child: Image.network(
               image,
               fit: BoxFit.fill,

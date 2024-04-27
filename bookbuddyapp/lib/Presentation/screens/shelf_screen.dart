@@ -22,7 +22,7 @@ class _ShelfScreenState extends State<ShelfScreen> {
       appBar: AppBar(
         title: const Text(
           "My book Shelf",
-          style: TextStyle(color: Colors.white, fontSize: 28),
+          style: TextStyle(color: Colors.white, fontSize: 26),
         ),
         backgroundColor: Colors.black,
       ),
@@ -33,11 +33,16 @@ class _ShelfScreenState extends State<ShelfScreen> {
             if (state.books.length == 0) {
               return Center(
                 child: Container(
-                  height: 650,
-                  width: 650,
-                  child: const Image(
-                    image: AssetImage('assets/empty_rack.png'),
-                    fit: BoxFit.contain,
+                  height: 350,
+                  width: 400,
+                  child: const Column(
+                    children: [
+                       Image(
+                        image: AssetImage('assets/empty_rack.png'),
+                        fit: BoxFit.contain,
+                      ),
+                      Text("Empty Shelf!       ",style: TextStyle(color: Colors.white),)
+                    ],
                   ),
                 ),
               );
