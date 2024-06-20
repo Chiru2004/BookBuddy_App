@@ -1,8 +1,10 @@
 import 'package:bookbuddyapp/Blocs/booksave/booksave_bloc.dart';
+import 'package:bookbuddyapp/Presentation/screens/splashscreen.dart';
 import 'package:bookbuddyapp/services/saveservice.dart';
 import 'package:flutter/material.dart';
 import 'package:bookbuddyapp/Presentation/screens/explore_screen.dart';
 import 'package:bookbuddyapp/Presentation/screens/shelf_screen.dart';
+import 'package:bookbuddyapp/Presentation/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,16 +19,13 @@ class BookBuddyApp extends StatelessWidget {
             BooksaveBloc(RepositoryProvider.of<SaveShelf>(context)),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            fontFamily: GoogleFonts.raleway().fontFamily,
-            textTheme:
-                GoogleFonts.ralewayTextTheme(Theme.of(context).textTheme),
-            scaffoldBackgroundColor: Colors.black,
-            appBarTheme: AppBarTheme(
-              backgroundColor: Colors.grey[900], // Dark grey app bar
-            ),
-          ),
-          home: LandingPage(),
+    
+          
+          // declare the light theme
+          theme: lightmode,
+          darkTheme: darkmode,
+  
+          home: const SecondPage(),
         ),
       ),
     );
@@ -49,9 +48,9 @@ class _LandingPageState extends State<LandingPage> {
       body: _getPage(_selectedIndex), // Displaying selected page
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor:
-            Colors.grey[900], // Dark grey background for bottom nav bar
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
+            Theme.of(context).colorScheme.background, // Dark grey background for bottom nav bar
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        unselectedItemColor:Theme.of(context).colorScheme.secondary,
         currentIndex: _selectedIndex,
         onTap: (index) =>
             setState(() => _selectedIndex = index), // Updating selected index

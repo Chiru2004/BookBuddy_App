@@ -27,13 +27,13 @@ class _SearchScreenState extends State<SearchScreen> {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon:const Icon(Icons.arrow_back_ios,
-                color: Color.fromARGB(255, 255, 255, 255)),
+            icon: Icon(Icons.arrow_back_ios,
+                color: Theme.of(context).colorScheme.primary),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          title: const Text(
+          title:  Text(
             'Search for Books',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color:Theme.of(context).colorScheme.primary),
           ),
         ),
         body: Padding(
@@ -43,12 +43,12 @@ class _SearchScreenState extends State<SearchScreen> {
             children: [
               TextField(
                 autofocus: true,
-                style: const TextStyle(color: Colors.white),
+                style:  TextStyle(color:Theme.of(context).colorScheme.primary),
                 controller: _searchController,
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                   focusColor: Colors.grey,
                   labelText: 'Enter your book name',
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: TextStyle(color:Theme.of(context).colorScheme.primary),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -58,22 +58,22 @@ class _SearchScreenState extends State<SearchScreen> {
                   searchbooks.add(FetchSearchBooks(_searchController.text));
                   //
                 },
-                style: const ButtonStyle(
+                style:  ButtonStyle(
                     side: MaterialStatePropertyAll(
-                        BorderSide(color: Colors.white, width: 1.5))),
-                child: const Text(
+                        BorderSide(color:Theme.of(context).colorScheme.primary, width: 1.5))),
+                child:  Text(
                   'Search',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color:Theme.of(context).colorScheme.primary),
                 ),
               ),
               const SizedBox(height: 7.0),
               Expanded(child: BlocBuilder<SearchBloc, SearchState>(
                   builder: (context, state) {
                 if (state is SearchInitial) {
-                  return const Center(
+                  return  Center(
                     child: Text(
                       "Enter your Query",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color:Theme.of(context).colorScheme.primary),
                     ),
                   );
                 } else if (state is SearchFound) {
@@ -101,10 +101,10 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   );
                 } else if (state is SearchSearching) {
-                  return const Center(
+                  return  Center(
                     // Use SpinKitFoldingCube for the folding cube loading indicator
                     child: SpinKitFoldingCube(
-                      color: Color.fromARGB(255, 255, 255, 255), // You can customize the color
+                      color: Theme.of(context).colorScheme.primary, // You can customize the color
                       size: 50.0, // You can customize the size
                     ),
                   );

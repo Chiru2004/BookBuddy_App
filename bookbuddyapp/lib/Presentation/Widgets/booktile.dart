@@ -50,7 +50,7 @@ class BookTile extends StatelessWidget {
                     child: Text(
                       book['volumeInfo']['title'],
                       textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 11, color: Colors.white),
+                      style:  TextStyle(fontSize: 11, color:Theme.of(context).colorScheme.primary),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),

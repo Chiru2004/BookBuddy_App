@@ -42,8 +42,8 @@ class SearchBox extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, color: Colors.white),
+                style:  TextStyle(
+                    fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
               ),
               SizedBox(height: 3),
               Text(

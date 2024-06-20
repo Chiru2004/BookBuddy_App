@@ -22,7 +22,8 @@ class CategoryButton extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(14)),
               gradient: LinearGradient(
-                  colors: [coloor.withOpacity(0.9), coloor.withOpacity(0.2)],
+                  colors: 
+                  [coloor.withOpacity(0.9), coloor.withOpacity(0.2)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight)),
           child: Padding(
@@ -39,7 +40,7 @@ class CategoryButton extends StatelessWidget {
                 ),
                 Text(
                   "  " + category + "  ",
-                  style: const TextStyle(color: Colors.white, fontSize: 16),
+                  style:  TextStyle(color:Theme.of(context).colorScheme.primary, fontSize: 16),
                 ),
               ],
             ),

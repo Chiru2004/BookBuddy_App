@@ -14,11 +14,11 @@ class BookDetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black, // Dark background color
       appBar: AppBar(
-        title: const Text(
+        title:  Text(
           "Details",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
-        backgroundColor: Colors.black, // Match the background color
+        backgroundColor: Theme.of(context).colorScheme.background, // Match the background color
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -61,33 +61,33 @@ class BookDetailsPage extends StatelessWidget {
                       ),
                       Text(
                         book.volumeInfo!.title!,
-                        style: const TextStyle(
+                        style:  TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: Theme.of(context).colorScheme.primary),
                       ),
                       const SizedBox(height: 8.0),
                       Text(
                         'By \n' + book.volumeInfo!.authors!.first,
-                        style: TextStyle(fontSize: 16, color: Colors.white),
+                        style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.primary),
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 24.0),
+            const SizedBox(height: 24.0),
             // Section 2: Navigation and Description
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ExpansionTile(
-                  title: const Text(
+                  title:  Text(
                     'Description of the book',
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                        color: Theme.of(context).colorScheme.primary),
                   ),
                   children: [
                     Padding(
@@ -95,7 +95,7 @@ class BookDetailsPage extends StatelessWidget {
                       child: Text(
                         book.volumeInfo!.description!,
                         style:
-                            const TextStyle(fontSize: 16, color: Colors.white),
+                             TextStyle(fontSize: 16, color:Theme.of(context).colorScheme.primary),
                       ),
                     ),
                   ],
@@ -108,42 +108,42 @@ class BookDetailsPage extends StatelessWidget {
                   children: [
                     ListTile(
                       title: Text(book.volumeInfo!.language!,
-                          style: TextStyle(color: Colors.white, fontSize: 21)),
-                      subtitle: const Text(
+                          style: TextStyle(color:Theme.of(context).colorScheme.primary, fontSize: 21)),
+                      subtitle:  Text(
                         'Language',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 14),
                       ),
                     ),
                     ListTile(
                       title: Text(book.volumeInfo!.pageCount.toString(),
-                          style: TextStyle(color: Colors.white, fontSize: 21)),
-                      subtitle: const Text(
+                          style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 21)),
+                      subtitle:  Text(
                         'Page Count',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 14),
                       ),
                     ),
                     ListTile(
                       title: Text(book.volumeInfo!.publishedDate!,
-                          style: TextStyle(color: Colors.white, fontSize: 21)),
-                      subtitle: const Text(
+                          style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 21)),
+                      subtitle:  Text(
                         'Published Date',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 14),
                       ),
                     ),
                     ListTile(
                       title: Text(book.volumeInfo!.categories!.first,
-                          style: TextStyle(color: Colors.white, fontSize: 21)),
-                      subtitle: const Text(
+                          style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 21)),
+                      subtitle:  Text(
                         'Genre',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 14),
                       ),
                     ),
                     ListTile(
                       title: Text(book.volumeInfo!.printType!,
-                          style: TextStyle(color: Colors.white, fontSize: 21)),
-                      subtitle: const Text(
+                          style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 21)),
+                      subtitle:  Text(
                         'Print Type',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 14),
                       ),
                     ),
 

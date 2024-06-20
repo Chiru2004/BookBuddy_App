@@ -9,23 +9,26 @@ class ImageView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios,
-              color:  Color.fromARGB(255, 255, 255, 255)),
+          icon:  Icon(Icons.arrow_back_ios,
+              color: Theme.of(context).colorScheme.primary),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text(
+        title:  Text(
           "Book Cover",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
+        backgroundColor: Theme.of(context).colorScheme.background,
       ),
-      body: Center(
-        child: SizedBox(
-            height: 300,
-            width: 200,
-            child: Image.network(
-              image,
-              fit: BoxFit.fill,
-            )),
+      body: InteractiveViewer(
+        child: Center(
+          child: SizedBox(
+              height: 300,
+              width: 200,
+              child: Image.network(
+                image,
+                fit: BoxFit.fill,
+              )),
+        ),
       ),
     );
   }

@@ -1,13 +1,14 @@
 import 'package:bookbuddyapp/Presentation/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bookbuddyapp/Blocs/explore_bloc.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bookbuddyapp/Presentation/Widgets/category_button.dart';
 import 'package:bookbuddyapp/Presentation/Widgets/booktile.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ExploreScreen extends StatefulWidget {
+  const ExploreScreen({super.key});
   @override
   _ExploreScreen createState() => _ExploreScreen();
 }
@@ -35,11 +36,21 @@ class _ExploreScreen extends State<ExploreScreen> {
         create: (context) => exploreCategories,
         child: Scaffold(
           appBar: AppBar(
-            title: const Text(
-              "Explore Books",
-              style: TextStyle(color: Colors.white, fontSize: 26),
+          
+            title:RichText(
+          text:  TextSpan(
+          children: [
+            TextSpan(
+              text: "Explore ",
+               style: TextStyle(color:Theme.of(context).colorScheme.secondary, fontSize: 18 ,fontFamily:  GoogleFonts.raleway().fontFamily)
             ),
-            backgroundColor: Colors.black,
+            TextSpan(
+              text: "Books",
+               style: TextStyle(color:Theme.of(context).colorScheme.primary, fontSize: 28,fontFamily:  GoogleFonts.raleway().fontFamily)
+            )
+          ]
+        )),
+            backgroundColor: Theme.of(context).colorScheme.background,
           ),
           body: Column(
             children: [
@@ -47,32 +58,32 @@ class _ExploreScreen extends State<ExploreScreen> {
                 padding: const EdgeInsets.all(11.0),
                 child: Row(
                   children: [
-                    const Text(
+                     Text(
                       "Categories",
-                      style: TextStyle(color: Colors.white, fontSize: 21),
+                      style: TextStyle(color:Theme.of(context).colorScheme.primary, fontSize: 21),
                     ),
                     const Spacer(),
                     OutlinedButton(
-                        style: const ButtonStyle(
+                        style:  ButtonStyle(
                             side: MaterialStatePropertyAll(
-                                BorderSide(color: Colors.white, width: 1.5))),
+                                BorderSide(color:Theme.of(context).colorScheme.primary, width: 1.5))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const SearchScreen(),
                           ));
                         },
-                        child: const Row(
+                        child:  Row(
                           children: [
                             Icon(
                               Icons.search,
-                              color: Colors.white,
+                              color:Theme.of(context).colorScheme.primary,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 2,
                             ),
                             Text(
                               "Search",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color:Theme.of(context).colorScheme.primary),
                             )
                           ],
                         ))
@@ -82,7 +93,7 @@ class _ExploreScreen extends State<ExploreScreen> {
               const SizedBox(
                 height: 4,
               ),
-              Container(
+              SizedBox(
                 height: 40,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
@@ -147,10 +158,9 @@ class _ExploreScreen extends State<ExploreScreen> {
                       // builder will called whenever there is change if state in the app
                       builder: (context, state) {
                     if (state is ExploreLoading) {
-                      return const Center(
+                      return  Center(
                         child: SpinKitFoldingCube(
-                          color: Color.fromARGB(255, 255, 255,
-                              255), // You can customize the color
+                          color: Theme.of(context).colorScheme.primary, // You can customize the color
                           size: 50.0, // You can customize the size
                         ),
                       );
