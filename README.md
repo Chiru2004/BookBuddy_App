@@ -8,131 +8,64 @@ Maybe you can mention me or this repo in the acknowledgements too
 -->
 <div align="center">
 
-  <img src="assets/logo.png" alt="logo" width="200" height="auto" />
-  <h1>Book Buddy App</h1>
+  <img src="bookbuddyapp/assets/applogo.jpg" alt="logo" width="200" height="auto" />
+  <h1>Book Buddy</h1>
   
   <p>
-    Have the amazing world of books right at your fingertips!
+    The amazing world of books at your fingertips!
   </p>
   
+  
+<!-- Badges -->
+   
 </div>
 
 <br />
-
-<!-- Table of Contents -->
-# :notebook_with_decorative_cover: Table of Contents
-
-- [About the Project](#star2-about-the-project)
-  * [Screenshots](#camera-screenshots)
-  * [Tech Stack](#space_invader-tech-stack)
-  * [Features](#dart-features)
-  * [Color Reference](#art-color-reference)
-  * [Environment Variables](#key-environment-variables)
-- [Getting Started](#toolbox-getting-started)
-  * [Prerequisites](#bangbang-prerequisites)
-  * [Installation](#gear-installation)
-  * [Running Tests](#test_tube-running-tests)
-  * [Run Locally](#running-run-locally)
-  * [Deployment](#triangular_flag_on_post-deployment)
-- [Usage](#eyes-usage)
-- [Roadmap](#compass-roadmap)
-- [Contributing](#wave-contributing)
-  * [Code of Conduct](#scroll-code-of-conduct)
-- [FAQ](#grey_question-faq)
-- [License](#warning-license)
-- [Contact](#handshake-contact)
-- [Acknowledgements](#gem-acknowledgements)
 
   
 
 <!-- About the Project -->
 ## :star2: About the Project
-<div>
-  Flutter Mobile app that lets you seamlessly navigate through the world of books. Lets you see books belonging to a particular category. Have a dedicated page to view all the details of the books and finally save it locally on finding it interesting!. All in one place, that is book buddy app for you.
-</div>
+Our Flutter mobile app offers a seamless and engaging experience for book lovers. With over 10 categories to explore, including Fiction, Sci-Fi, Education, and Thriller, you can effortlessly browse and discover a wide range of books tailored to your interests. Additionally, if you're looking to refresh the visual appeal of the app, you can easily switch to Light Mode, bringing a vibrant and new look to your browsing experience. Enjoy a personalized and dynamic interface that makes exploring and enjoying your favorite books a pleasure.
+
 <!-- Screenshots -->
-### :camera: Screenshots of the App
+### :camera: Screenshots
 
 <div align="center"> 
-  ![image](https://github.com/user-attachments/assets/b465a973-b5f6-4976-afbe-8d2ff2a24184)
-
-  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+ <div>
+   <img src="assets/books.jpg" alt="logo" width="200" height="auto" />
+<img src="assets/details.jpg" alt="logo" width="200" height="auto" />
+<img src="assets/query.jpg" alt="logo" width="200" height="auto" />
+<img src="assets/search.jpg" alt="logo" width="200" height="auto" />
+<img src="assets/fshelf.jpg" alt="logo" width="200" height="auto" />
+<img src="assets/shelf.jpg" alt="logo" width="200" height="auto" />
+ </div>
 </div>
 
 
 <!-- TechStack -->
 ### :space_invader: Tech Stack
 
-<details>
-  <summary>Client</summary>
-  <ul>
-    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://nextjs.org/">Next.js</a></li>
-    <li><a href="https://reactjs.org/">React.js</a></li>
-    <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
-  </ul>
-</details>
 
-<details>
-  <summary>Server</summary>
   <ul>
-    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://expressjs.com/">Express.js</a></li>
-    <li><a href="https://go.dev/">Golang</a></li>
-    <li><a href="https://nestjs.com/">Nest.js</a></li>
-    <li><a href="https://socket.io/">SocketIO</a></li>
-    <li><a href="https://www.prisma.io/">Prisma</a></li>    
-    <li><a href="https://www.apollographql.com/">Apollo</a></li>
-    <li><a href="https://graphql.org/">GraphQL</a></li>
+    <li><a href="https://flutter.dev/">Flutter</a></li>
+    <li><a href="https://pub.dev/packages/hive_flutter/">Hive</a></li>
+    <li><a href="https://pub.dev/packages/flutter_bloc">BLoC</a></li>
   </ul>
-</details>
 
-<details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://www.mysql.com/">MySQL</a></li>
-    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
-    <li><a href="https://redis.io/">Redis</a></li>
-    <li><a href="https://neo4j.com/">Neo4j</a></li>
-    <li><a href="https://www.mongodb.com/">MongoDB</a></li>
-  </ul>
-</details>
 
-<details>
-<summary>DevOps</summary>
-  <ul>
-    <li><a href="https://www.docker.com/">Docker</a></li>
-    <li><a href="https://www.jenkins.io/">Jenkins</a></li>
-    <li><a href="https://circleci.com/">CircleCLI</a></li>
-  </ul>
-</details>
+
+
 
 <!-- Features -->
 ### :dart: Features
 
-- Feature 1
-- Feature 2
-- Feature 3
-
-<!-- Color Reference -->
-### :art: Color Reference
-
-| Color             | Hex                                                                |
-| ----------------- | ------------------------------------------------------------------ |
-| Primary Color | ![#222831](https://via.placeholder.com/10/222831?text=+) #222831 |
-| Secondary Color | ![#393E46](https://via.placeholder.com/10/393E46?text=+) #393E46 |
-| Accent Color | ![#00ADB5](https://via.placeholder.com/10/00ADB5?text=+) #00ADB5 |
-| Text Color | ![#EEEEEE](https://via.placeholder.com/10/EEEEEE?text=+) #EEEEEE |
-
-
-<!-- Env Variables -->
-### :key: Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
-`API_KEY`
-
-`ANOTHER_API_KEY`
+- <h4> Shelf Feature </h4>
+Effortlessly manage your book collection with our app's Shelf feature. Store all your book details locally on your mobile and easily navigate through your curated list. With just a click, you can seamlessly remove any book from your collection. Enjoy a streamlined and user-friendly experience in managing your personal library.
+- <h4>Category View</h4>
+Want to explore books by category? Our app has you covered. Easily browse through more than 10 categories, including Fiction, Sci-Fi, Education, Thriller, and many more. Discover and enjoy a wide range of books tailored to your interests, all conveniently organized for effortless navigation.
+- <h4>Light/Dark theme</h4>
+Feeling bored with the existing theme of the app? Switch to Light Mode and visually refresh your app experience. Enjoy a new, vibrant look that brings a fresh perspective to your browsing.
 
 <!-- Getting Started -->
 ## 	:toolbox: Getting Started
@@ -140,140 +73,60 @@ To run this project, you will need to add the following environment variables to
 <!-- Prerequisites -->
 ### :bangbang: Prerequisites
 
-This project uses Yarn as package manager
+- Project requires lastest flutter sdk installed.<br>
+- A IDE such as VScode or Android Studio. <br>
+- A emulator installed in the laptop, or the set up done in your phone. <br>
+<br>
+Run this command to get the report of the requirements and their availability.
+<br>
 
 ```bash
- npm install --global yarn
-```
-
-<!-- Installation -->
-### :gear: Installation
-
-Install my-project with npm
-
-```bash
-  yarn install my-project
-  cd my-project
-```
-   
-<!-- Running Tests -->
-### :test_tube: Running Tests
-
-To run tests, run the following command
-
-```bash
-  yarn test test
+  flutter doctor
 ```
 
 <!-- Run Locally -->
 ### :running: Run Locally
 
-Clone the project
+- Clone the project
 
 ```bash
-  git clone https://github.com/Louis3797/awesome-readme-template.git
+  git clone https://github.com/Chiru2004/BookBuddy_App.git
 ```
 
-Go to the project directory
+- Go to the project directory
 
 ```bash
-  cd my-project
+  cd bookbuddyapp
 ```
 
-Install dependencies
+- Install dependencies
 
 ```bash
-  yarn install
+  flutter pub get
 ```
 
-Start the server
+- Start the emulator 
 
+- Set up the API key in the .env file from <a href="https://developers.google.com/books">Google book API</a>.
+
+- Run the project with command
 ```bash
-  yarn start
+  flutter run
 ```
-
-
-<!-- Deployment -->
-### :triangular_flag_on_post: Deployment
-
-To deploy this project run
-
-```bash
-  yarn deploy
-```
-
 
 <!-- Usage -->
 ## :eyes: Usage
 
-Use this space to tell a little more about your project and how it can be used. Show additional screenshots, code samples, demos or link to other resources.
-
-
-```javascript
-import Component from 'my-project'
-
-function App() {
-  return <Component />
-}
-```
-
-<!-- Roadmap -->
-## :compass: Roadmap
-
-* [x] Todo 1
-* [ ] Todo 2
-
-
-<!-- Contributing -->
-## :wave: Contributing
-
-<a href="https://github.com/Louis3797/awesome-readme-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" />
-</a>
-
-
-Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
-
-
-<!-- Code of Conduct -->
-### :scroll: Code of Conduct
-
-Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-template/blob/master/CODE_OF_CONDUCT.md)
-
-<!-- FAQ -->
-## :grey_question: FAQ
-
-- Question 1
-
-  + Answer 1
-
-- Question 2
-
-  + Answer 2
-
-
-<!-- License -->
-## :warning: License
-
-Distributed under the no License. See LICENSE.txt for more information.
-
-
-<!-- Contact -->
-## :handshake: Contact
-
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/Louis3797/awesome-readme-template](https://github.com/Louis3797/awesome-readme-template)
+With our app, you can preview book contents online before making a purchase. If you find a book you love, the app conveniently directs you to Google Books for easy purchasing. Discover ratings, descriptions, genres, and much more, all in one place, making your book browsing experience comprehensive and enjoyable!
 
 
 <!-- Acknowledgments -->
 ## :gem: Acknowledgements
 
-Use this section to mention useful resources and libraries that you have used in your projects.
+A big shout-out to these amazing resources and their creators!
 
- - [Shields.io](https://shields.io/)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
- - [Readme Template](https://github.com/othneildrew/Best-README-Template)
+ - [Flutterly](https://www.youtube.com/watch?v=w6XWjpBK4W8&list=PLptHs0ZDJKt_T-oNj_6Q98v-tBnVf-S_o)
+ - [pub.dev](https://pub.dev/)
+ - [Youtube](https://www.youtube.com/watch?v=FB9GpmL0Qe0&t=199s&pp=ygUlc3RvcmUgdG9kbyBsaXN0IHVzaW5nIGhpdmUgaW4gZmx1dHRlcg%3D%3D)
+ - [Readme Template](https://github.com/Louis3797/awesome-readme-template/blob/main/README.md)
+ - [Udemy](https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/)
